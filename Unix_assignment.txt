@@ -1,0 +1,87 @@
+*****************************************************************TRY 1 ********************************************************************************
+1. Create folder 'Test' in your home directory
+--> mkdir Test
+
+2. Create below files
+  - employeelist
+  - skillset
+--> cat >employeelist
+    cat >skillset
+
+3. Create folder Test2 in home directory
+  - a) create symbolink and hard link for skillset file 
+    --> ln -s skillset softskillset 
+        ln skillset hskillset 
+
+  - b) delete skillset file and check if hardlink and symbolic link file exists
+    --> rm skillset
+        ls -l
+
+  - c) explain the difference b/n symbolic and hard links
+    -->Symbolic link creates some temp file which though doesn't hold any memory that file will redirect to the source file its link provided to a source file through the other name.
+       Hard link can be defined as a file or link thatvdirectly links to the souce file or it can also be said as a copy of sourcefile because even though the sourcefile is deleted the hard link holds all the information same as it's sourcefile.
+
+4. Provide read and write permission to 'user2' group
+   test if user2 group users can access the file
+--> Assuming we are in user2 directory /home/user2/
+    chmod g+r employeelist (This gives read permission to group)
+    chmod g+w employeelist (This gives write permission to group)
+
+5. Revoke write permission from user2 group and test the access again
+--> chmod g-w employeelist 
+
+6. Grant write permission for others and test it 
+--> chmod o+w employeelist
+
+7. Revoke write permission for others and test again
+--> chmod o-w employeelist
+
+8. Change the group of employeelist file to 'user3'
+   test if user3 group have access
+--> chgrp user3 employeelist
+
+9. Change ownership of the file to user5 and test
+--> chown employeelist user5
+
+10. check how many employees are there  (hint: use wc command)
+--> wc -l employeelist
+
+ *****************************************************************TRY 2 ********************************************************************************
+
+1) Create file “File1”
+--> cat >File1
+
+2) Append 2 more lines to the same file
+--> cat >>File2
+    Line2
+    Line3
+    ctrl-d
+
+3) Create File2 with few lines
+--> cat >File2
+    Line1
+    Line2
+    ctrl-d
+
+4) Display the contents of both File1 and File2
+--> cat File1 File2
+
+5) Concatenate both File1 & 2
+--> cat File1 File2 >& file3
+
+6) Send the above output to File3
+--> cat File1 File2 >& file3 1>File3
+
+7) Read File1,File2,File3… File5 . Observe the output
+-->cat File1 File2 File3 File4 File4 File5
+
+8) Redirect the errors of the above command to “errorlog”
+--> cat File1 File2 File3 File4 File4 File5 2>errorfile
+
+9) Concatenate name File1 to 5 and store it in File 10. if any errors, log them in the same file 
+--> cat File1 File2 File3 File4 File4 File5 >&File10
+
+10) Copy File1 to File6. Add the errors to “errorlog”
+--> cat File1 File2 File3 File4 File4 File5 File6 >&errorlog
+
+    
